@@ -15,25 +15,28 @@ key = KEY_RIGHT                                                    # Initializin
 score = 0
 animation=0
 collision=0
+v_position=1
 
 
 vehicle=[[17,4],[18,5],[18,3],[16,5],[16,3]]
 vehicle1=[[17,15],[18,16],[18,14],[16,16],[16,14]]
 obj=[[15,5],[14,5],[15,4],[14,4]]
 
+vehicle_x=[vehicle[0][0],vehicle[1][0],vehicle[2][0],vehicle[3][0]]
+vehicle_y=[vehicle[0][1],vehicle[1][1],vehicle[2][1],vehicle[3][1]]
+vehicle1_y=[vehicle1[0][1],vehicle1[1][1],vehicle1[2][1],vehicle1[3][1]]
+
+obj_x=[obj[0][0],obj[1][0],obj[2][0],obj[3][0]]
+obj_y=[obj[0][1],obj[1][1],obj[2][1],obj[3][1]]
 
 win.addch(vehicle[0][0], vehicle[0][1], '*')
 win.addch(vehicle[1][0], vehicle[1][1], '*')
 win.addch(vehicle[2][0], vehicle[2][1], '*')
 win.addch(vehicle[3][0], vehicle[3][1], '*')
 win.addch(vehicle[4][0], vehicle[4][1], '*')
-def check_if_colision():
-     for v in vehicle:
-         for o in obj:
-             if v==o:
-                 return True
-     else:
-         return False
+
+
+
 
 
 
@@ -60,9 +63,12 @@ while key != 27:                                                   # While Esc k
     win.addch(obj[2][0], obj[2][1], ' ')
     win.addch(obj[3][0], obj[3][1], ' ')
 
-    if check_if_colision():
-        collision+=1
 
+    #calculate colision for left position
+    if obj[0][0] == vehicle [0][0] and v_position !=2:
+    	collision+=1
+
+    #TODO calculate position for right position
 
 
     obj[0][0]+=2
@@ -90,6 +96,7 @@ while key != 27:                                                   # While Esc k
         win.addch(vehicle1[2][0], vehicle1[2][1], '*')
         win.addch(vehicle1[3][0], vehicle1[3][1], '*')
         win.addch(vehicle1[4][0], vehicle1[4][1], '*')
+        v_position=2
 
     if key == KEY_LEFT:
     	win.addch(vehicle1[0][0], vehicle1[0][1], ' ')
@@ -102,6 +109,7 @@ while key != 27:                                                   # While Esc k
         win.addch(vehicle[2][0], vehicle[2][1], '*')
         win.addch(vehicle[3][0], vehicle[3][1], '*')
         win.addch(vehicle[4][0], vehicle[4][1], '*')
+        v_position=1
 
     if True:
         old_obj = obj
